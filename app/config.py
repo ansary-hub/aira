@@ -37,6 +37,10 @@ class Settings(BaseSettings):
     analysis_days_back: int = 7
     analysis_max_articles: int = 5
 
+    # Reflection Configuration
+    reflection_enabled: bool = True  # Enable/disable reflection layer
+    reflection_min_quality_score: float = 0.7  # Minimum quality score to accept analysis
+
     # Database Configuration
     database_url: str = "sqlite+aiosqlite:///./aira.db"
 

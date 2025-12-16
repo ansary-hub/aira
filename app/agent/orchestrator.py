@@ -3,9 +3,11 @@ from datetime import datetime
 
 from app.agent.react import run_react_loop, ReActResult
 from app.agent.reflection import reflect_on_analysis
+from app.config import get_settings
 from app.schemas.responses import AnalysisReport
 
 logger = logging.getLogger(__name__)
+settings = get_settings()
 
 
 async def run_agent(
@@ -80,8 +82,8 @@ async def run_agent(
             key_findings = [str(key_findings)]
         key_findings = [str(f) for f in key_findings[:5]]  # Max 5 findings
 
-        # Run reflection if enabled
-        if enable_reflection:
+        # Run reflection if enabled (check both parameter and config setting)
+        if enable_reflection and settings.reflection_enabled:
             reflection = await reflect_on_analysis(
                 ticker=ticker,
                 analysis_summary=analysis_summary,
@@ -89,6 +91,7 @@ async def run_agent(
                 key_findings=key_findings,
                 tools_used=react_result.tools_used,
                 sources_count=len(react_result.sources),
+                min_quality_score=settings.reflection_min_quality_score,
             )
 
             logger.info(f"Reflection quality score: {reflection.quality_score}")

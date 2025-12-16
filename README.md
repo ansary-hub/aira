@@ -353,6 +353,8 @@ All configuration is managed through environment variables (see `.env`):
 | `MONITOR_MIN_ARTICLES` | `5` | Articles needed to trigger alert |
 | `ANALYSIS_DAYS_BACK` | `7` | Days of news to fetch |
 | `ANALYSIS_MAX_ARTICLES` | `5` | Max articles per analysis |
+| `REFLECTION_ENABLED` | `true` | Enable/disable reflection layer |
+| `REFLECTION_MIN_QUALITY_SCORE` | `0.7` | Minimum score to accept analysis |
 
 ## License
 
