@@ -110,7 +110,7 @@ AIRA can watch stocks over time. When you start a monitor, here's what happens:
 
 4. **Significance Threshold**: If the number of new articles exceeds `MONITOR_MIN_ARTICLES` (default: 5), AIRA considers this "significant news"
 
-5. **Triggered Analysis**: Significant news triggers a quick analysis (fewer ReAct steps, no reflection) to assess the situation
+5. **Triggered Analysis**: Significant news triggers a quick analysis (fewer ReAct steps, but with reflection) to assess the situation
 
 6. **Proactive Alert**: The analysis is stored as a `PROACTIVE_ALERT` that you can retrieve via the `/alerts` endpoint
 

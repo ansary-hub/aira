@@ -127,22 +127,22 @@ async def run_quick_analysis(
     ticker: str,
     company_name: str | None = None,
 ) -> AnalysisReport:
-    """Run a quick analysis with fewer steps and no reflection.
+    """Run a quick analysis for monitoring tasks.
 
-    Useful for scheduled monitoring tasks where speed is important.
+    Uses fewer ReAct steps but still includes reflection for quality.
 
     Args:
         ticker: Stock ticker symbol
         company_name: Optional company name
 
     Returns:
-        AnalysisReport with basic analysis
+        AnalysisReport with analysis
     """
     return await run_agent(
         query=f"Provide a brief market update for {ticker}",
         ticker=ticker,
         company_name=company_name,
         max_steps=6,
-        enable_reflection=False,
-        max_retries=0,
+        enable_reflection=True,
+        max_retries=1,
     )
