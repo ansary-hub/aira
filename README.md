@@ -94,14 +94,9 @@ This loop continues until the agent decides it has gathered enough information (
 
 ### The Reflection Layer
 
-After the ReAct loop produces an analysis, AIRA doesn't just ship it. A separate reflection step examines the output:
+After the ReAct loop produces an analysis, a reflection step sends the output back to the LLM with a prompt asking it to evaluate quality on a 0-1 scale. The LLM assesses completeness (were all tools used?), balance (positive and negative factors?), and specificity (actual data points cited?).
 
-- Did we use enough data sources?
-- Is the analysis coherent and well-supported?
-- Does the sentiment score align with the key findings?
-- Are there obvious gaps or contradictions?
-
-If the quality score is too low, the orchestrator can retry the entire analysis with this feedback in mind. The reflection layer can also refine the summary, smoothing out rough edges before the final report is delivered.
+If the score falls below 0.7, the orchestrator retries the entire analysis. The LLM can also provide a refined summary to smooth out the original. This is essentially asking the LLM to grade its own homework—a soft quality gate rather than rigorous validation.
 
 ## Persistent Monitoring: How Alerts Work
 
